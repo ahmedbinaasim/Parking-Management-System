@@ -1,0 +1,26 @@
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE specific (for Eclipse, IntelliJ, etc.)
+.idea/
+.settings/
+.classpath
+.project
+*.iml
+*.iws
+out/
+
+# Build directories
+bin/
+build/
+target/
+
+# Log files
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
