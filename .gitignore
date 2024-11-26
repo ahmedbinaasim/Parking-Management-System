@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ---
 
@@ -7,11 +8,15 @@ This file ensures unnecessary or sensitive files are not tracked by Git.
 ```plaintext
 # Maven and Java
 target/
+=======
+# Java specific
+>>>>>>> cd6021fea89dac49713928f5474d5ad343b127f9
 *.class
 *.jar
 *.war
 *.ear
 
+<<<<<<< HEAD
 # IntelliJ IDEA
 .idea/
 *.iml
@@ -31,3 +36,25 @@ Thumbs.db
 
 # Git-specific
 *.orig
+=======
+# IDE specific (for Eclipse, IntelliJ, etc.)
+.idea/
+.settings/
+.classpath
+.project
+*.iml
+*.iws
+out/
+
+# Build directories
+bin/
+build/
+target/
+
+# Log files
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+>>>>>>> cd6021fea89dac49713928f5474d5ad343b127f9
