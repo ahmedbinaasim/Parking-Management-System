@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.CarWashController"
+           stylesheets="@com/pms/css/car-wash.css">
+
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Car Wash Service" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Request Section -->
+        <VBox fx:id="requestContainer" spacing="15" styleClass="content-section">
+            <!-- Active Session Info -->
+            <VBox styleClass="session-info" spacing="5">
+                <Label text="Parking Session" styleClass="section-header"/>
+                <Label fx:id="activeSessionLabel" styleClass="info-text"/>
+            </VBox>
+
+            <!-- Service Details -->
+            <VBox spacing="15">
+                <Label text="Service Details" styleClass="section-header"/>
+                
+                <VBox spacing="5">
+                    <Label text="Vehicle Number" styleClass="input-label"/>
+                    <TextField fx:id="vehicleNumberField" 
+                             promptText="Enter vehicle number"
+                             styleClass="input-field"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Date" styleClass="input-label"/>
+                    <DatePicker fx:id="datePicker" 
+                              styleClass="date-picker"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Time Slot" styleClass="input-label"/>
+                    <ComboBox fx:id="timeSlotComboBox" 
+                             promptText="Select time slot"
+                             styleClass="combo-box"/>
+                </VBox>
+
+                <Label fx:id="priceLabel" styleClass="price-label"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="requestButton" 
+                        text="Request Service" 
+                        onAction="#handleRequest"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Payment Section -->
+        <VBox fx:id="paymentContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Label text="Payment Details" styleClass="section-header"/>
+
+            <VBox styleClass="payment-details" spacing="10">
+                <Label fx:id="paymentAmountLabel" styleClass="amount-text"/>
+                
+                <VBox spacing="5">
+                    <Label text="Payment Method" styleClass="input-label"/>
+                    <ComboBox fx:id="paymentMethodComboBox" 
+                             styleClass="combo-box"/>
+                </VBox>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="paymentProgressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="payButton" 
+                        text="Process Payment" 
+                        onAction="#handlePayment"
+                        styleClass="pay-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Confirmation Section -->
+        <VBox fx:id="confirmationContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Label text="Booking Confirmation" styleClass="section-header"/>
+
+            <VBox styleClass="confirmation-details" spacing="10">
+                <Label fx:id="confirmationNumberLabel" styleClass="confirmation-text"/>
+                <Label fx:id="scheduledTimeLabel" styleClass="confirmation-text"/>
+                <Label fx:id="vehicleLabel" styleClass="confirmation-text"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <Button fx:id="printButton" 
+                        text="Print Confirmation" 
+                        onAction="#handlePrintConfirmation"
+                        styleClass="print-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Back Button -->
+        <Button text="Back to Main Menu" 
+                onAction="#goToMainMenu"
+                styleClass="secondary-button"/>
+    </VBox>
+</StackPane>

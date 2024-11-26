@@ -1,0 +1,171 @@
+/* car-wash.css */
+
+.root {
+    -fx-background-color: #f5f6fa;
+}
+
+.header {
+    -fx-padding: 20;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.title-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+.content-section {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.section-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: #34495e;
+    -fx-font-weight: bold;
+}
+
+.session-info {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 15;
+    -fx-background-radius: 5;
+    -fx-border-color: #e1e8ef;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+}
+
+.info-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.input-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.input-field {
+    -fx-pref-height: 40;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+    -fx-padding: 5 10;
+}
+
+.input-field:focused {
+    -fx-border-color: #3498db;
+}
+
+.date-picker {
+    -fx-pref-height: 40;
+}
+
+.date-picker > .text-field {
+    -fx-background-radius: 5;
+}
+
+.combo-box {
+    -fx-pref-height: 40;
+    -fx-background-radius: 5;
+}
+
+.price-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+.payment-details {
+    -fx-background-color: #f1f8ff;
+    -fx-padding: 15;
+    -fx-background-radius: 5;
+    -fx-border-color: #3498db;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+}
+
+.amount-text {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2980b9;
+}
+
+.confirmation-details {
+    -fx-background-color: #edfbf3;
+    -fx-padding: 15;
+    -fx-background-radius: 5;
+    -fx-border-color: #27ae60;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+}
+
+.confirmation-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #27ae60;
+}
+
+.primary-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.pay-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.pay-button:hover {
+    -fx-background-color: #219a52;
+}
+
+.print-button {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.print-button:hover {
+    -fx-background-color: #d68910;
+}
+
+.secondary-button {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+.button:disabled {
+    -fx-opacity: 0.7;
+}
+
+.progress-indicator {
+    -fx-progress-color: #3498db;
+}

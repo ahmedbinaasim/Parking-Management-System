@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.RegistrationController"
+           stylesheets="@com/pms/css/registration.css">
+
+    <!-- Background with blur effect -->
+    <ImageView fitWidth="1200" fitHeight="800" preserveRatio="false">
+        <!-- <image>
+            <Image url="@/images/parking-background.jpg"/>
+        </image> -->
+        <effect>
+            <javafx.scene.effect.GaussianBlur radius="10"/>
+        </effect>
+    </ImageView>
+
+    <!-- Main Content -->
+    <ScrollPane fitToWidth="true" styleClass="transparent-scroll-pane">
+        <VBox fx:id="registrationContainer" alignment="CENTER" spacing="20" 
+              styleClass="registration-container" maxWidth="500">
+            
+            <!-- Logo and Title -->
+            <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                <!-- <image>
+                    <Image url="@/images/logo.png"/>
+                </image> -->
+            </ImageView>
+            <Text styleClass="title-text" text="Create New Account"/>
+            
+            <!-- Registration Form -->
+            <VBox spacing="15" styleClass="form-container">
+                <!-- Username Field -->
+                <VBox spacing="5">
+                    <Label text="Username" styleClass="input-label"/>
+                    <TextField fx:id="usernameField" 
+                             promptText="Choose a username"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Email Field -->
+                <VBox spacing="5">
+                    <Label text="Email" styleClass="input-label"/>
+                    <TextField fx:id="emailField" 
+                             promptText="Enter your email"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Phone Field -->
+                <VBox spacing="5">
+                    <Label text="Phone Number" styleClass="input-label"/>
+                    <TextField fx:id="phoneField" 
+                             promptText="Enter your phone number"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Password Field -->
+                <VBox spacing="5">
+                    <Label text="Password" styleClass="input-label"/>
+                    <PasswordField fx:id="passwordField" 
+                                 promptText="Create a password"
+                                 styleClass="input-field"/>
+                    <!-- Password Strength Indicator -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <VBox fx:id="strengthIndicator" 
+                              styleClass="strength-indicator"/>
+                        <Label fx:id="strengthLabel" 
+                               styleClass="strength-label"/>
+                    </HBox>
+                </VBox>
+                
+                <!-- Confirm Password Field -->
+                <VBox spacing="5">
+                    <Label text="Confirm Password" styleClass="input-label"/>
+                    <PasswordField fx:id="confirmPasswordField" 
+                                 promptText="Confirm your password"
+                                 styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Status Label -->
+                <Label fx:id="statusLabel" styleClass="status-label"/>
+                
+                <!-- Loading Indicator -->
+                <ProgressIndicator fx:id="loadingIndicator" 
+                                 styleClass="loading-indicator"/>
+                
+                <!-- Register Button -->
+                <Button fx:id="registerButton" text="Register" 
+                        onAction="#handleRegistration"
+                        styleClass="primary-button"/>
+                
+                <!-- Back to Login -->
+                <HBox alignment="CENTER">
+                    <Label text="Already have an account? "/>
+                    <Hyperlink text="Login" onAction="#goToLogin"
+                              styleClass="link-button"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</StackPane>

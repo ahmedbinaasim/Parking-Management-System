@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pms.controllers.AdminDashboardController"
+      stylesheets="@/styles/admin-dashboard.css"
+      spacing="10">
+
+    <!-- Top Bar -->
+    <HBox styleClass="top-bar" alignment="CENTER_RIGHT" spacing="10">
+        <Text fx:id="welcomeText" styleClass="welcome-text"/>
+        <Button text="Refresh" onAction="#handleRefresh" 
+                styleClass="refresh-button"/>
+        <Button text="Logout" onAction="#handleLogout" 
+                styleClass="logout-button"/>
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+    </HBox>
+
+    <!-- Main Content -->
+    <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS">
+        <!-- Dashboard Tab -->
+        <Tab text="Dashboard" closable="false">
+            <ScrollPane fitToWidth="true" styleClass="dashboard-scroll">
+                <VBox spacing="20" styleClass="dashboard-content">
+                    <!-- Statistics Cards -->
+                    <HBox spacing="20" styleClass="stats-container">
+                        <VBox styleClass="stat-card">
+                            <Text text="Total Spots" styleClass="stat-title"/>
+                            <Label fx:id="totalSpotsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Available Spots" styleClass="stat-title"/>
+                            <Label fx:id="availableSpotsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Active Sessions" styleClass="stat-title"/>
+                            <Label fx:id="activeSessionsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Total Revenue" styleClass="stat-title"/>
+                            <Label fx:id="totalRevenueLabel" styleClass="stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="stat-card">
+                            <Text text="Pending Approvals" styleClass="stat-title"/>
+                            <Label fx:id="pendingApprovalsLabel" styleClass="stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="stat-card">
+                            <Text text="Active Violations" styleClass="stat-title"/>
+                            <Label fx:id="activeViolationsLabel" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Charts Section -->
+                    <HBox spacing="20" styleClass="charts-container">
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                            <Text text="Occupancy Trend" styleClass="chart-title"/>
+                            <LineChart fx:id="occupancyChart" animated="false">
+                                <xAxis>
+                                    <CategoryAxis label="Time"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Occupied Spots"/>
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                            <Text text="Revenue Distribution" styleClass="chart-title"/>
+                            <PieChart fx:id="revenueChart" animated="false"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- Registrations Tab -->
+        <Tab text="Pending Registrations" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="pendingRegistrationsTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Violations Tab -->
+        <Tab text="Violations" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="violationsTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Feedback Tab -->
+        <Tab text="Feedback" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="feedbackTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.CarWashController"
+           stylesheets="@/styles/car-wash.css">
+
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Car Wash Service" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Request Section -->
+        <VBox fx:id="requestContainer" spacing="15" styleClass="content-section">
+            <!-- Active Session Info -->
+            <VBox styleClass="session-info" spacing="5">
+                <Label text="Parking Session" styleClass="section-header"/>
+                <Label fx:id="activeSessionLabel" styleClass="info-text"/>
+            </VBox>
+
+            <!-- Service Details -->
+            <VBox spacing="15">
+                <Label text="Service Details" styleClass="section-header"/>
+                
+                <VBox spacing="5">
+                    <Label text="Vehicle Number" styleClass="input-label"/>
+                    <TextField fx:id="vehicleNumberField" 
+                             promptText="Enter vehicle number"
+                             styleClass="input-field"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Date" styleClass="input-label"/>
+                    <DatePicker fx:id="datePicker" 
+                              styleClass="date-picker"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Time Slot" styleClass="input-label"/>
+                    <ComboBox fx:id="timeSlotComboBox" 
+                             promptText="Select time slot"
+                             styleClass="combo-box"/>
+                </VBox>
+
+                <Label fx:id="priceLabel" styleClass="price-label"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="requestButton" 
+                        text="Request Service" 
+                        onAction="#handleRequest"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Payment Section -->
+        <VBox fx:id="paymentContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Label text="Payment Details" styleClass="section-header"/>
+
+            <VBox styleClass="payment-details" spacing="10">
+                <Label fx:id="paymentAmountLabel" styleClass="amount-text"/>
+                
+                <VBox spacing="5">
+                    <Label text="Payment Method" styleClass="input-label"/>
+                    <ComboBox fx:id="paymentMethodComboBox" 
+                             styleClass="combo-box"/>
+                </VBox>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="paymentProgressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="payButton" 
+                        text="Process Payment" 
+                        onAction="#handlePayment"
+                        styleClass="pay-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Confirmation Section -->
+        <VBox fx:id="confirmationContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Label text="Booking Confirmation" styleClass="section-header"/>
+
+            <VBox styleClass="confirmation-details" spacing="10">
+                <Label fx:id="confirmationNumberLabel" styleClass="confirmation-text"/>
+                <Label fx:id="scheduledTimeLabel" styleClass="confirmation-text"/>
+                <Label fx:id="vehicleLabel" styleClass="confirmation-text"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <Button fx:id="printButton" 
+                        text="Print Confirmation" 
+                        onAction="#handlePrintConfirmation"
+                        styleClass="print-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Back Button -->
+        <Button text="Back to Main Menu" 
+                onAction="#goToMainMenu"
+                styleClass="secondary-button"/>
+    </VBox>
+</StackPane>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.EntryGateController"
+           stylesheets="@/styles/entry-gate.css">
+           
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Parking Entry" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Card Scan Section -->
+        <VBox fx:id="cardScanContainer" spacing="15" styleClass="content-section">
+            <Text text="Scan Parking Card" styleClass="section-header"/>
+            
+            <VBox spacing="5">
+                <Label text="Card Number" styleClass="input-label"/>
+                <TextField fx:id="cardNumberField" 
+                          promptText="Enter card number or scan card"
+                          styleClass="input-field"/>
+                <Text text="Format: PMS-XXXXXXXXXXXXX-XXXX" 
+                      styleClass="help-text"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" visible="false"/>
+                <Button text="Verify Card" 
+                        onAction="#handleCardScan"
+                        fx:id="confirmButton"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Spot Selection Section -->
+        <VBox fx:id="spotSelectionContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Vehicle Details" styleClass="section-header"/>
+
+            <!-- Reservation Details (if exists) -->
+            <VBox fx:id="reservationDetailsContainer" 
+                  styleClass="reservation-info" visible="false">
+                <Label fx:id="reservedSpotLabel" styleClass="info-text"/>
+                <Label fx:id="reservationTimeLabel" styleClass="info-text"/>
+                <Separator/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Vehicle Number" styleClass="input-label"/>
+                <TextField fx:id="vehicleNumberField" 
+                          promptText="Enter vehicle number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="License Plate" styleClass="input-label"/>
+                <TextField fx:id="plateNumberField" 
+                          promptText="Enter license plate number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Parking Spot" styleClass="input-label"/>
+                <ComboBox fx:id="spotNumberComboBox" 
+                         promptText="Select parking spot"
+                         styleClass="combo-box"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="spotProgressIndicator" visible="false"/>
+                <Button text="Confirm Entry" 
+                        onAction="#handleEntryConfirmation"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Receipt Section -->
+        <VBox fx:id="receiptContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Entry Receipt" styleClass="section-header"/>
+
+            <VBox styleClass="receipt-content" spacing="10">
+                <Label fx:id="receiptNumberLabel" styleClass="receipt-text"/>
+                <Label fx:id="entryTimeLabel" styleClass="receipt-text"/>
+                <Label fx:id="spotNumberLabel" styleClass="receipt-text"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Button fx:id="printReceiptButton" 
+                        text="Print Receipt" 
+                        onAction="#handlePrintReceipt"
+                        styleClass="print-button"/>
+                <Button text="Back to Main Menu" 
+                        onAction="#goToMainMenu"
+                        styleClass="secondary-button"/>
+            </VBox>
+        </VBox>
+    </VBox>
+</StackPane>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.ExitGateController"
+           stylesheets="@/styles/exit-gate.css">
+           
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Parking Exit" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Receipt Input Section -->
+        <VBox fx:id="receiptInputContainer" spacing="15" styleClass="content-section">
+            <Text text="Enter Receipt Details" styleClass="section-header"/>
+            
+            <VBox spacing="5">
+                <Label text="Receipt Number" styleClass="input-label"/>
+                <TextField fx:id="receiptNumberField" 
+                          promptText="Enter receipt number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" visible="false"/>
+                <Button text="Validate Receipt" 
+                        onAction="#handleReceiptValidation"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Session Details Section -->
+        <VBox fx:id="sessionDetailsContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Parking Details" styleClass="section-header"/>
+
+            <VBox styleClass="details-container" spacing="10">
+                <Label fx:id="vehicleNumberLabel" styleClass="detail-text"/>
+                <Label fx:id="spotNumberLabel" styleClass="detail-text"/>
+                <Label fx:id="entryTimeLabel" styleClass="detail-text"/>
+                <Label fx:id="durationLabel" styleClass="detail-text"/>
+                
+                <Separator/>
+                
+                <Label fx:id="chargesLabel" styleClass="charges-text"/>
+            </VBox>
+
+            <!-- Payment Section -->
+            <VBox spacing="15">
+                <Text text="Payment Details" styleClass="section-header"/>
+
+                <VBox spacing="5">
+                    <Label text="Payment Method" styleClass="input-label"/>
+                    <ComboBox fx:id="paymentMethodComboBox" 
+                             styleClass="combo-box"/>
+                </VBox>
+
+                <VBox styleClass="amount-container" spacing="5">
+                    <Label fx:id="totalAmountLabel" styleClass="total-amount"/>
+                </VBox>
+
+                <HBox alignment="CENTER" spacing="10">
+                    <ProgressIndicator fx:id="paymentProgressIndicator" 
+                                     visible="false"/>
+                    <Button fx:id="payButton" 
+                            text="Process Payment" 
+                            onAction="#handlePayment"
+                            styleClass="pay-button"/>
+                    <Button fx:id="printReceiptButton" 
+                            text="Print Receipt" 
+                            onAction="#handlePrintReceipt"
+                            styleClass="print-button"
+                            visible="false"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- Back Button -->
+        <Button text="Back to Main Menu" 
+                onAction="#goToMainMenu"
+                styleClass="secondary-button"/>
+    </VBox>
+</StackPane>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.LoginController"
+           stylesheets="@/styles/login.css">
+
+    <!-- Background with blur effect -->
+    <ImageView fitWidth="1200" fitHeight="800" preserveRatio="false">
+        <image>
+            <Image url="@/images/parking-background.jpg"/>
+        </image>
+        <effect>
+            <javafx.scene.effect.GaussianBlur radius="10"/>
+        </effect>
+    </ImageView>
+
+    <!-- Main Content -->
+    <VBox fx:id="loginContainer" alignment="CENTER" spacing="20" 
+          styleClass="login-container" maxWidth="400">
+        
+        <!-- Logo and Title -->
+        <ImageView fitHeight="100" fitWidth="100" preserveRatio="true">
+            <image>
+                <Image url="@/images/logo.png"/>
+            </image>
+        </ImageView>
+        <Text styleClass="title-text" text="Parking Management System"/>
+        
+        <!-- Login Form -->
+        <VBox spacing="15" styleClass="form-container">
+            <!-- Username Field -->
+            <VBox spacing="5">
+                <Label text="Username" styleClass="input-label"/>
+                <TextField fx:id="usernameField" 
+                          promptText="Enter your username"
+                          styleClass="input-field"/>
+            </VBox>
+            
+            <!-- Password Field -->
+            <VBox spacing="5">
+                <Label text="Password" styleClass="input-label"/>
+                <PasswordField fx:id="passwordField" 
+                             promptText="Enter your password"
+                             styleClass="input-field"/>
+            </VBox>
+            
+            <!-- Status Label -->
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+            
+            <!-- Loading Indicator -->
+            <ProgressIndicator fx:id="loadingIndicator" 
+                             styleClass="loading-indicator"/>
+            
+            <!-- Login Button -->
+            <Button fx:id="loginButton" text="Login" 
+                    onAction="#handleLogin"
+                    styleClass="primary-button"/>
+            
+            <!-- Additional Options -->
+            <HBox alignment="CENTER" spacing="10">
+                <Hyperlink text="Register" onAction="#goToRegister"
+                          styleClass="link-button"/>
+                <Separator orientation="VERTICAL"/>
+                <Hyperlink text="Forgot Password?" 
+                          onAction="#goToPasswordReset"
+                          styleClass="link-button"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</StackPane>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.LostTicketController"
+           stylesheets="@/styles/lost-ticket.css">
+           
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Report Lost Ticket" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Report Section -->
+        <VBox fx:id="reportContainer" spacing="15" styleClass="content-section">
+            <Text text="Vehicle Information" styleClass="section-header"/>
+            
+            <VBox spacing="5">
+                <Label text="Vehicle Number" styleClass="input-label"/>
+                <TextField fx:id="vehicleNumberField" 
+                          promptText="Enter your vehicle number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="reportButton" 
+                        text="Report Lost Ticket" 
+                        onAction="#handleLostTicketReport"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Payment Section -->
+        <VBox fx:id="paymentContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Fine Payment" styleClass="section-header"/>
+
+            <VBox styleClass="fine-details" spacing="10">
+                <Label text="Lost Ticket Fine Details" styleClass="subsection-header"/>
+                <Label fx:id="fineAmountLabel" styleClass="amount-text"/>
+                <Text text="Note: Lost ticket fine includes base fine and any accumulated parking charges." 
+                      styleClass="info-text"/>
+            </VBox>
+
+            <VBox fx:id="paymentStatusContainer" visible="false" 
+                  styleClass="payment-status" spacing="10">
+                <Label text="Payment Status" styleClass="status-header"/>
+                <Label fx:id="paymentStatusLabel" styleClass="status-text"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="paymentProgressIndicator" 
+                                 visible="false"/>
+                <Button fx:id="payFineButton" 
+                        text="Pay Fine" 
+                        onAction="#handleFinePayment"
+                        styleClass="pay-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Back Button -->
+        <Button text="Back to Main Menu" 
+                onAction="#goToMainMenu"
+                styleClass="secondary-button"/>
+    </VBox>
+</StackPane>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.pms.controllers.MainMenuController" styleClass="main-container">
+    <!-- Left Navbar (1/4 width) -->
+    <VBox styleClass="navbar" prefWidth="200" spacing="10">
+        <!-- User Profile Section -->
+        <VBox styleClass="profile-section" alignment="CENTER" spacing="10">
+            <Label fx:id="userNameLabel" text="User Name" styleClass="username-label"/>
+            <Label fx:id="userRoleLabel" text="Role" styleClass="role-label"/>
+        </VBox>
+
+        <!-- Navigation Menu -->
+        <VBox spacing="5" styleClass="nav-menu">
+            <!-- Admin-specific buttons -->
+            <Button fx:id="manageUsersButton" text="Manage Users" onAction="#goToManageUsers" 
+                    styleClass="nav-button" visible="true"/>
+            <Button fx:id="manageParkingButton" text="Manage Parking" onAction="#goToManageParking" 
+                    styleClass="nav-button" visible="true"/>
+            
+            <!-- Common buttons -->
+            <Button fx:id="parkingEntryButton" text="Parking Entry" onAction="#goToParkingEntry" 
+                    styleClass="nav-button"/>
+            <Button fx:id="parkingExitButton" text="Parking Exit" onAction="#goToParkingExit" 
+                    styleClass="nav-button"/>
+            <Button fx:id="reservationsButton" text="Reservations" onAction="#goToReservations" 
+                    styleClass="nav-button"/>
+            <Button fx:id="feedbackButton" text="Feedback" onAction="#goToFeedback" 
+                    styleClass="nav-button"/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/> <!-- Spacer -->
+
+        <!-- Logout Button at bottom -->
+        <Button text="Logout" onAction="#handleLogout" styleClass="logout-button"/>
+    </VBox>
+
+    <!-- Main Content Area (3/4 width) -->
+    <VBox HBox.hgrow="ALWAYS" styleClass="main-content">
+        <!-- Top Bar with User Settings -->
+        <HBox styleClass="top-bar" alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="notificationsButton" text="Notifications" onAction="#goToNotifications" 
+                    styleClass="top-button"/>
+            <Button fx:id="profileButton" text="Profile Settings" onAction="#goToProfile" 
+                    styleClass="top-button"/>
+        </HBox>
+
+        <!-- Welcome Message -->
+        <VBox alignment="CENTER" styleClass="welcome-section">
+            <Text text="Welcome to Parking Management System" styleClass="welcome-text"/>
+            <Label fx:id="dateTimeText" styleClass="datetime-text"/> <!-- Changed from Text to Label -->
+        </VBox>
+
+        <!-- Dashboard Stats -->
+        <GridPane styleClass="dashboard-stats" hgap="20" vgap="20">
+            <VBox styleClass="stat-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Available Spots" styleClass="stat-label"/>
+                <Label fx:id="availableSpotsLabel" text="0" styleClass="stat-value"/>
+            </VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Your Active Tickets" styleClass="stat-label"/>
+                <Label fx:id="activeTicketsLabel" text="0" styleClass="stat-value"/>
+            </VBox>
+        </GridPane>
+    </VBox>
+</HBox>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.ParkingHistoryController"
+           stylesheets="@/styles/parking-history.css">
+
+    <VBox spacing="20" styleClass="main-container">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+            <Text text="Parking History" styleClass="title-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" 
+                    onAction="#refreshHistory"
+                    styleClass="refresh-button"/>
+            <Button text="Back to Menu" 
+                    onAction="#goToMainMenu"
+                    styleClass="menu-button"/>
+        </HBox>
+
+        <!-- Filter Section -->
+        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="filter-section">
+            <VBox spacing="5">
+                <Label text="Time Period" styleClass="filter-label"/>
+                <ComboBox fx:id="filterComboBox" 
+                         prefWidth="150"
+                         styleClass="filter-combo"/>
+            </VBox>
+
+            <VBox fx:id="dateFilterContainer" spacing="5">
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="From Date" styleClass="filter-label"/>
+                        <DatePicker fx:id="fromDatePicker" styleClass="date-picker"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="To Date" styleClass="filter-label"/>
+                        <DatePicker fx:id="toDatePicker" styleClass="date-picker"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <VBox spacing="5" alignment="CENTER_RIGHT">
+                <Button fx:id="exportButton" 
+                        text="Export to CSV"
+                        onAction="#handleExport"
+                        styleClass="export-button"/>
+            </VBox>
+        </HBox>
+
+        <!-- Statistics Section -->
+        <HBox spacing="20" styleClass="stats-section">
+            <Label fx:id="totalSessionsLabel" 
+                   styleClass="stat-label"/>
+            <Label fx:id="totalChargesLabel" 
+                   styleClass="stat-label"/>
+            <ProgressIndicator fx:id="progressIndicator" 
+                             visible="false"/>
+        </HBox>
+
+        <!-- Table Section -->
+        <TableView fx:id="historyTable" 
+                   VBox.vgrow="ALWAYS"
+                   styleClass="history-table">
+            <placeholder>
+                <Label text="No parking history found" 
+                       styleClass="placeholder-text"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Note Section -->
+        <HBox styleClass="note-section">
+            <Text text="Double-click on any row to view detailed information" 
+                  styleClass="help-text"/>
+        </HBox>
+    </VBox>
+</StackPane>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.pms.controllers.PasswordResetController" 
+      alignment="CENTER" 
+      spacing="20"
+      styleClass="root">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Password Reset" styleClass="label-header"/>
+    
+    <TextField fx:id="usernameField" 
+               promptText="Enter Username"/>
+               
+    <TextField fx:id="emailField" 
+               promptText="Enter Registered Email"/>
+               
+    <PasswordField fx:id="newPasswordField" 
+                  promptText="Enter New Password"/>
+                  
+    <PasswordField fx:id="confirmPasswordField" 
+                  promptText="Confirm New Password"/>
+    
+    <Button text="Reset Password" 
+            onAction="#resetPassword"/>
+            
+    <Button text="Back to Login" 
+            onAction="#goToLogin"/>
+</VBox>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.RegistrationController"
+           stylesheets="@/styles/registration.css">
+
+    <!-- Background with blur effect -->
+    <ImageView fitWidth="1200" fitHeight="800" preserveRatio="false">
+        <image>
+            <Image url="@/images/parking-background.jpg"/>
+        </image>
+        <effect>
+            <javafx.scene.effect.GaussianBlur radius="10"/>
+        </effect>
+    </ImageView>
+
+    <!-- Main Content -->
+    <ScrollPane fitToWidth="true" styleClass="transparent-scroll-pane">
+        <VBox fx:id="registrationContainer" alignment="CENTER" spacing="20" 
+              styleClass="registration-container" maxWidth="500">
+            
+            <!-- Logo and Title -->
+            <ImageView fitHeight="80" fitWidth="80" preserveRatio="true">
+                <image>
+                    <Image url="@/images/logo.png"/>
+                </image>
+            </ImageView>
+            <Text styleClass="title-text" text="Create New Account"/>
+            
+            <!-- Registration Form -->
+            <VBox spacing="15" styleClass="form-container">
+                <!-- Username Field -->
+                <VBox spacing="5">
+                    <Label text="Username" styleClass="input-label"/>
+                    <TextField fx:id="usernameField" 
+                             promptText="Choose a username"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Email Field -->
+                <VBox spacing="5">
+                    <Label text="Email" styleClass="input-label"/>
+                    <TextField fx:id="emailField" 
+                             promptText="Enter your email"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Phone Field -->
+                <VBox spacing="5">
+                    <Label text="Phone Number" styleClass="input-label"/>
+                    <TextField fx:id="phoneField" 
+                             promptText="Enter your phone number"
+                             styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Password Field -->
+                <VBox spacing="5">
+                    <Label text="Password" styleClass="input-label"/>
+                    <PasswordField fx:id="passwordField" 
+                                 promptText="Create a password"
+                                 styleClass="input-field"/>
+                    <!-- Password Strength Indicator -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <VBox fx:id="strengthIndicator" 
+                              styleClass="strength-indicator"/>
+                        <Label fx:id="strengthLabel" 
+                               styleClass="strength-label"/>
+                    </HBox>
+                </VBox>
+                
+                <!-- Confirm Password Field -->
+                <VBox spacing="5">
+                    <Label text="Confirm Password" styleClass="input-label"/>
+                    <PasswordField fx:id="confirmPasswordField" 
+                                 promptText="Confirm your password"
+                                 styleClass="input-field"/>
+                </VBox>
+                
+                <!-- Status Label -->
+                <Label fx:id="statusLabel" styleClass="status-label"/>
+                
+                <!-- Loading Indicator -->
+                <ProgressIndicator fx:id="loadingIndicator" 
+                                 styleClass="loading-indicator"/>
+                
+                <!-- Register Button -->
+                <Button fx:id="registerButton" text="Register" 
+                        onAction="#handleRegistration"
+                        styleClass="primary-button"/>
+                
+                <!-- Back to Login -->
+                <HBox alignment="CENTER">
+                    <Label text="Already have an account? "/>
+                    <Hyperlink text="Login" onAction="#goToLogin"
+                              styleClass="link-button"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</StackPane>

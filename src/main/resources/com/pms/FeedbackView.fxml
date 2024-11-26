@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox spacing="20" styleClass="main-container" 
+      stylesheets="@com/pms/css/feedback.css"
+      xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.pms.controllers.FeedbackController">
+
+    <!-- Header -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+        <Text styleClass="title-text" text="Share Your Feedback"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Menu" onAction="#goToMainMenu" styleClass="menu-button"/>
+    </HBox>
+
+    <!-- Main Content -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Feedback Form -->
+        <VBox styleClass="content-panel" spacing="15" HBox.hgrow="ALWAYS">
+            <!-- Feedback Type Selection -->
+            <VBox spacing="10">
+                <Label text="What type of feedback would you like to share?" 
+                       styleClass="section-header"/>
+                <HBox spacing="15">
+                    <RadioButton fx:id="generalRadio" text="General" toggleGroup="$feedbackType" 
+                               selected="true"/>
+                    <RadioButton fx:id="serviceRadio" text="Service" toggleGroup="$feedbackType"/>
+                    <RadioButton fx:id="facilityRadio" text="Facility" toggleGroup="$feedbackType"/>
+                    <RadioButton fx:id="suggestionRadio" text="Suggestion" toggleGroup="$feedbackType"/>
+                    <RadioButton fx:id="complaintRadio" text="Complaint" toggleGroup="$feedbackType"/>
+                </HBox>
+            </VBox>
+
+            <!-- Rating Section -->
+            <VBox spacing="10">
+                <Label text="Rate your experience" styleClass="section-header"/>
+                <HBox spacing="10" styleClass="rating-container">
+                    <Button fx:id="star1" styleClass="star-button" onAction="#handleRating"/>
+                    <Button fx:id="star2" styleClass="star-button" onAction="#handleRating"/>
+                    <Button fx:id="star3" styleClass="star-button" onAction="#handleRating"/>
+                    <Button fx:id="star4" styleClass="star-button" onAction="#handleRating"/>
+                    <Button fx:id="star5" styleClass="star-button" onAction="#handleRating"/>
+                </HBox>
+                <Label fx:id="ratingLabel" styleClass="rating-label"/>
+            </VBox>
+
+            <!-- Feedback Content -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+                <Label text="Tell us more" styleClass="section-header"/>
+                <TextArea fx:id="feedbackContent" wrapText="true" 
+                         promptText="Share your thoughts here..." VBox.vgrow="ALWAYS"/>
+                <Label fx:id="characterCount" styleClass="character-count"/>
+            </VBox>
+
+            <!-- Submit Button -->
+            <Button fx:id="submitButton" text="Submit Feedback" 
+                    styleClass="submit-button" onAction="#handleSubmit"/>
+        </VBox>
+
+        <!-- Previous Feedback Panel -->
+        <VBox styleClass="content-panel" prefWidth="300">
+            <Label text="Your Previous Feedback" styleClass="section-header"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="previousFeedbackContainer" spacing="10"/>
+            </ScrollPane>
+        </VBox>
+    </HBox>
+
+    <!-- Loading Overlay -->
+    <StackPane fx:id="loadingOverlay" visible="false" styleClass="loading-overlay">
+        <VBox alignment="CENTER" spacing="10">
+            <ProgressIndicator/>
+            <Label fx:id="loadingLabel" text="Submitting feedback..." styleClass="loading-text"/>
+        </VBox>
+    </StackPane>
+
+</VBox>

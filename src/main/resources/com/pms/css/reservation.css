@@ -1,0 +1,127 @@
+/* reservation.css */
+.main-container {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 20;
+}
+
+.header {
+    -fx-background-color: white;
+    -fx-padding: 15 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.title-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+.content-panel {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.section-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.spots-grid {
+    -fx-padding: 10;
+}
+
+.parking-spot {
+    -fx-pref-width: 80;
+    -fx-pref-height: 80;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.parking-spot.available {
+    -fx-background-color: #2ecc71;
+}
+
+.parking-spot.occupied {
+    -fx-background-color: #e74c3c;
+}
+
+.parking-spot.reserved {
+    -fx-background-color: #f1c40f;
+}
+
+.parking-spot.maintenance {
+    -fx-background-color: #95a5a6;
+}
+
+.parking-spot.selected {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+}
+
+.legend-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.info-section {
+    -fx-padding: 10;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5;
+}
+
+.info-value {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.payment-section {
+    -fx-padding: 15 0;
+}
+
+.reserve-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.reserve-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.reserve-button:disabled {
+    -fx-opacity: 0.7;
+}
+
+.menu-button {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+.policy-text {
+    -fx-font-size: 12px;
+    -fx-fill: #7f8c8d;
+}
+
+.loading-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loading-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

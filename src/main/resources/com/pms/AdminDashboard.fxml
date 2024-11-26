@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pms.controllers.AdminDashboardController"
+      stylesheets="@com/pms/css/admin-dashboard.css"
+      spacing="10">
+
+    <!-- Top Bar -->
+    <HBox styleClass="top-bar" alignment="CENTER_RIGHT" spacing="10">
+        <Text fx:id="welcomeText" styleClass="welcome-text"/>
+        <Button text="Refresh" onAction="#handleRefresh" 
+                styleClass="refresh-button"/>
+        <Button text="Logout" onAction="#handleLogout" 
+                styleClass="logout-button"/>
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+    </HBox>
+
+    <!-- Main Content -->
+    <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS">
+        <!-- Dashboard Tab -->
+        <Tab text="Dashboard" closable="false">
+            <ScrollPane fitToWidth="true" styleClass="dashboard-scroll">
+                <VBox spacing="20" styleClass="dashboard-content">
+                    <!-- Statistics Cards -->
+                    <HBox spacing="20" styleClass="stats-container">
+                        <VBox styleClass="stat-card">
+                            <Text text="Total Spots" styleClass="stat-title"/>
+                            <Label fx:id="totalSpotsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Available Spots" styleClass="stat-title"/>
+                            <Label fx:id="availableSpotsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Active Sessions" styleClass="stat-title"/>
+                            <Label fx:id="activeSessionsLabel" styleClass="stat-value"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stat-card">
+                            <Text text="Total Revenue" styleClass="stat-title"/>
+                            <Label fx:id="totalRevenueLabel" styleClass="stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="stat-card">
+                            <Text text="Pending Approvals" styleClass="stat-title"/>
+                            <Label fx:id="pendingApprovalsLabel" styleClass="stat-value"/>
+                        </VBox>
+
+                        <VBox styleClass="stat-card">
+                            <Text text="Active Violations" styleClass="stat-title"/>
+                            <Label fx:id="activeViolationsLabel" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Charts Section -->
+                    <HBox spacing="20" styleClass="charts-container">
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                            <Text text="Occupancy Trend" styleClass="chart-title"/>
+                            <LineChart fx:id="occupancyChart" animated="false">
+                                <xAxis>
+                                    <CategoryAxis label="Time"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Occupied Spots"/>
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                            <Text text="Revenue Distribution" styleClass="chart-title"/>
+                            <PieChart fx:id="revenueChart" animated="false"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- Registrations Tab -->
+        <Tab text="Pending Registrations" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="pendingRegistrationsTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Violations Tab -->
+        <Tab text="Violations" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="violationsTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Feedback Tab -->
+        <Tab text="Feedback" closable="false">
+            <VBox spacing="10">
+                <TableView fx:id="feedbackTable" VBox.vgrow="ALWAYS">
+                    <!-- Columns are added programmatically -->
+                </TableView>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

@@ -1,0 +1,143 @@
+/* feedback.css */
+.main-container {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 20;
+}
+
+.header {
+    -fx-background-color: white;
+    -fx-padding: 15 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.title-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+.content-panel {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.rating-container {
+    -fx-padding: 10 0;
+}
+
+.star-button {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.star-button .star-icon {
+    -fx-fill: #bdc3c7;
+}
+
+.star-button:hover .star-icon,
+.star-button.selected .star-icon {
+    -fx-fill: #f1c40f;
+}
+
+.rating-label {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 14px;
+}
+
+.text-area {
+    -fx-pref-height: 150;
+    -fx-font-size: 14px;
+}
+
+.character-count {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 12px;
+}
+
+.submit-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.submit-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.submit-button:disabled {
+    -fx-opacity: 0.7;
+}
+
+.menu-button {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+/* Previous Feedback Styles */
+.feedback-card {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 10;
+    -fx-background-radius: 5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5;
+}
+
+.feedback-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.feedback-type {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.feedback-rating {
+    -fx-text-fill: #f1c40f;
+}
+
+.feedback-status {
+    -fx-font-size: 12px;
+    -fx-padding: 2 5;
+    -fx-background-radius: 3;
+}
+
+.feedback-status.pending {
+    -fx-background-color: #fff3cd;
+    -fx-text-fill: #856404;
+}
+
+.feedback-status.acknowledged {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.loading-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loading-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

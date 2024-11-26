@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.pms.controllers.MainMenuController" 
+      styleClass="main-container"
+      stylesheets="@com/pms/css/styles.css">
+    
+    <!-- Left Sidebar -->
+    <VBox styleClass="navbar" prefWidth="250" spacing="15">
+        <!-- Profile Section -->
+        <VBox styleClass="profile-section" alignment="CENTER" spacing="10">
+            <Label fx:id="userNameLabel" styleClass="username-label"/>
+            <Label fx:id="userRoleLabel" styleClass="role-label"/>
+            <Label fx:id="dateTimeLabel" styleClass="datetime-text"/>
+        </VBox>
+
+        <!-- Navigation Links -->
+        <VBox spacing="5" styleClass="nav-menu">
+            <!-- Core Functions -->
+            <Label text="Core Functions" styleClass="nav-section-header"/>
+            <Button fx:id="parkingEntryButton" text="Park Vehicle" 
+                    onAction="#goToParkingEntry" styleClass="nav-button"/>
+            <Button fx:id="parkingExitButton" text="Exit Parking" 
+                    onAction="#goToParkingExit" styleClass="nav-button"/>
+            <Button fx:id="historyButton" text="Parking History" 
+                    onAction="#goToParkingHistory" styleClass="nav-button"/>
+            
+            <!-- Additional Features -->
+            <Label text="Additional Features" styleClass="nav-section-header"/>
+            <Button fx:id="reservationsButton" text="Reservations" 
+                    onAction="#goToReservations" styleClass="nav-button"/>
+            <Button fx:id="feedbackButton" text="Feedback" 
+                    onAction="#goToFeedback" styleClass="nav-button"/>
+
+            <!-- Admin Section -->
+            <VBox fx:id="adminSection" spacing="5" visible="false" managed="false">
+                <Label text="Administration" styleClass="nav-section-header"/>
+                <Button fx:id="manageUsersButton" text="Manage Users" 
+                        onAction="#goToManageUsers" styleClass="nav-button"/>
+                <Button fx:id="manageParkingButton" text="Manage Parking" 
+                        onAction="#goToManageParking" styleClass="nav-button"/>
+            </VBox>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/> <!-- Spacer -->
+
+        <!-- Bottom Section -->
+        <Button text="Logout" onAction="#handleLogout" styleClass="logout-button"/>
+    </VBox>
+
+    <!-- Main Content Area -->
+    <VBox HBox.hgrow="ALWAYS" styleClass="main-content" spacing="20">
+        <!-- Welcome Section -->
+        <VBox styleClass="welcome-section" spacing="10">
+            <Text text="Dashboard Overview" styleClass="welcome-text"/>
+            <HBox spacing="20">
+                <!-- Stats Cards -->
+                <VBox styleClass="stat-card">
+                    <Label text="Available Spots" styleClass="stat-label"/>
+                    <Label fx:id="availableSpotsLabel" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card">
+                    <Label text="Active Sessions" styleClass="stat-label"/>
+                    <Label fx:id="activeSessionsLabel" text="0" styleClass="stat-value"/>
+                </VBox>
+
+                <!-- <VBox styleClass="stat-card">
+                    <Label text="Today's Revenue" styleClass="stat-label"/>
+                    <Label fx:id="todayRevenueLabel" text="$0.00" styleClass="stat-value"/>
+                </VBox> -->
+            </HBox>
+        </VBox>
+
+        <!-- Quick Actions -->
+        <VBox styleClass="quick-actions" spacing="15">
+            <Label text="Quick Actions" styleClass="section-header"/>
+            <HBox spacing="10">
+                <Button text="New Parking" onAction="#goToParkingEntry" 
+                        styleClass="action-button"/>
+                <Button text="View History" onAction="#goToParkingHistory" 
+                        styleClass="action-button"/>
+                <Button text="Give Feedback" onAction="#goToFeedback" 
+                        styleClass="action-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Notifications Area -->
+        <VBox fx:id="notificationsArea" styleClass="notifications-area" spacing="10">
+            <Label text="Recent Activity" styleClass="section-header"/>
+            <ScrollPane fitToWidth="true" prefHeight="200">
+                <VBox fx:id="notificationsList" spacing="5"/>
+            </ScrollPane>
+        </VBox>
+    </VBox>
+</HBox>

@@ -1,0 +1,71 @@
+/* General style for the dialog container */
+.dialog-container {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0, 0);
+    -fx-font-family: "Arial", sans-serif;
+    -fx-alignment: center;
+    -fx-min-width: 300px;
+    -fx-max-width: 400px;
+}
+
+/* Title text styling */
+.dialog-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 10px 0;
+}
+
+/* Message text styling */
+.dialog-message {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-padding: 0 0 20px 0;
+    -fx-wrap-text: true;
+}
+
+/* Button container for aligning buttons */
+.dialog-button-container {
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+    -fx-padding: 10px 0 0 0;
+}
+
+/* Button styling */
+.dialog-button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-border: none;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0.3, 0, 1);
+}
+
+.dialog-button:hover {
+    -fx-background-color: #005a9e;
+}
+
+.dialog-button:pressed {
+    -fx-background-color: #003c6e;
+}
+
+/* Cancel button style */
+.dialog-button-cancel {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #333333;
+}
+
+.dialog-button-cancel:hover {
+    -fx-background-color: #bbbbbb;
+}
+
+.dialog-button-cancel:pressed {
+    -fx-background-color: #999999;
+}

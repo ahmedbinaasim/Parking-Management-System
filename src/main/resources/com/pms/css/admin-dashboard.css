@@ -1,0 +1,179 @@
+/* admin-dashboard.css */
+
+/* Main Layout */
+.root {
+    -fx-background-color: #f5f6fa;
+}
+
+.top-bar {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 10;
+}
+
+.welcome-text {
+    -fx-font-size: 16px;
+    -fx-fill: #2c3e50;
+}
+
+/* Buttons */
+.refresh-button, .logout-button {
+    -fx-background-radius: 5;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+
+.refresh-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.refresh-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.logout-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.logout-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Statistics Cards */
+.stats-container {
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-min-width: 200;
+    -fx-alignment: center;
+}
+
+.stat-title {
+    -fx-font-size: 14px;
+    -fx-fill: #7f8c8d;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Charts */
+.charts-container {
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.chart-card {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.table-view .column-header {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Action Buttons in Tables */
+.approve-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.approve-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.reject-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.reject-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.resolve-button {
+    -fx-background-color: #f1c40f;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.resolve-button:hover {
+    -fx-background-color: #f39c12;
+}
+
+.acknowledge-button {
+    -fx-background-color: #9b59b6;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.acknowledge-button:hover {
+    -fx-background-color: #8e44ad;
+}
+
+/* Tabs */
+.tab-pane .tab-header-area .tab {
+    -fx-padding: 10 15;
+}
+
+.tab-pane .tab-header-area .tab:selected {
+    -fx-background-color: #3498db;
+}
+
+.tab-pane .tab-header-area .tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* Scrollbar */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .thumb:hover,
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #95a5a6;
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.ParkingHistoryController"
+           stylesheets="@com/pms/css/parking-history.css">
+
+    <VBox spacing="20" styleClass="main-container">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+            <Text text="Parking History" styleClass="title-text"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" 
+                    onAction="#refreshHistory"
+                    styleClass="refresh-button"/>
+            <Button text="Back to Menu" 
+                    onAction="#goToMainMenu"
+                    styleClass="menu-button"/>
+        </HBox>
+
+        <!-- Filter Section -->
+        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="filter-section">
+            <VBox spacing="5">
+                <Label text="Time Period" styleClass="filter-label"/>
+                <ComboBox fx:id="filterComboBox" 
+                         prefWidth="150"
+                         styleClass="filter-combo"/>
+            </VBox>
+
+            <VBox fx:id="dateFilterContainer" spacing="5">
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="From Date" styleClass="filter-label"/>
+                        <DatePicker fx:id="fromDatePicker" styleClass="date-picker"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="To Date" styleClass="filter-label"/>
+                        <DatePicker fx:id="toDatePicker" styleClass="date-picker"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <VBox spacing="5" alignment="CENTER_RIGHT">
+                <Button fx:id="exportButton" 
+                        text="Export to CSV"
+                        onAction="#handleExport"
+                        styleClass="export-button"/>
+            </VBox>
+        </HBox>
+
+        <!-- Statistics Section -->
+        <HBox spacing="20" styleClass="stats-section">
+            <Label fx:id="totalSessionsLabel" 
+                   styleClass="stat-label"/>
+            <Label fx:id="totalChargesLabel" 
+                   styleClass="stat-label"/>
+            <ProgressIndicator fx:id="progressIndicator" 
+                             visible="false"/>
+        </HBox>
+
+        <!-- Table Section -->
+        <TableView fx:id="historyTable" 
+                   VBox.vgrow="ALWAYS"
+                   styleClass="history-table">
+            <placeholder>
+                <Label text="No parking history found" 
+                       styleClass="placeholder-text"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Note Section -->
+        <HBox styleClass="note-section">
+            <Text text="Double-click on any row to view detailed information" 
+                  styleClass="help-text"/>
+        </HBox>
+    </VBox>
+</StackPane>

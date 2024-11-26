@@ -1,0 +1,33 @@
+
+---
+
+### 2. **`.gitignore`**
+This file ensures unnecessary or sensitive files are not tracked by Git.
+
+```plaintext
+# Maven and Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.tmp
+
+# Git-specific
+*.orig

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20" styleClass="main-container" 
+      stylesheets="@com/pms/css/reservation.css" 
+      xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.pms.controllers.ReservationController">
+
+    <!-- Header -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+        <Text styleClass="title-text" text="Parking Reservation"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Menu" onAction="#goToMainMenu" styleClass="menu-button"/>
+    </HBox>
+
+    <!-- Main Content -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Left Panel - Spot Selection -->
+        <VBox styleClass="content-panel" spacing="15" HBox.hgrow="ALWAYS">
+            <Label text="Available Parking Spots" styleClass="section-header"/>
+            
+            <!-- Date/Time Selection -->
+            <GridPane hgap="10" vgap="10">
+                <Label text="Start Date/Time" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="startDatePicker" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="startTimeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                
+                <Label text="End Date/Time" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="endDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="endTimeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            </GridPane>
+
+            <!-- Floor Selection -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Floor:"/>
+                <ComboBox fx:id="floorComboBox"/>
+                <Label text="Type:"/>
+                <ComboBox fx:id="spotTypeComboBox"/>
+            </HBox>
+
+            <!-- Spots Grid -->
+            <GridPane fx:id="spotsGrid" styleClass="spots-grid" hgap="10" vgap="10"/>
+            
+            <Label fx:id="spotLegend" text="🟢 Available  🔴 Occupied  🟡 Reserved  ⚫ Maintenance" 
+                   styleClass="legend-text"/>
+        </VBox>
+
+        <!-- Right Panel - Reservation Details -->
+        <VBox styleClass="content-panel" prefWidth="300">
+            <Label text="Reservation Details" styleClass="section-header"/>
+            
+            <!-- Vehicle Details -->
+            <VBox spacing="10">
+                <Label text="Vehicle Number"/>
+                <TextField fx:id="vehicleNumberField" promptText="Enter vehicle number"/>
+            </VBox>
+
+            <!-- Selected Spot Info -->
+            <VBox spacing="5" styleClass="info-section">
+                <Label text="Selected Spot:"/>
+                <Label fx:id="selectedSpotLabel" styleClass="info-value"/>
+                <Label text="Duration:"/>
+                <Label fx:id="durationLabel" styleClass="info-value"/>
+                <Label text="Total Charges:"/>
+                <Label fx:id="chargesLabel" styleClass="info-value"/>
+            </VBox>
+
+            <!-- Payment Section -->
+            <VBox spacing="10" styleClass="payment-section">
+                <Label text="Payment Method"/>
+                <ComboBox fx:id="paymentMethodComboBox"/>
+                <Button fx:id="reserveButton" text="Reserve Spot" 
+                        styleClass="reserve-button" onAction="#handleReservation"/>
+            </VBox>
+
+            <!-- Cancellation Policy -->
+            <Text styleClass="policy-text" wrappingWidth="280"
+                  text="Cancellation Policy: Free cancellation up to 1 hour before reservation start time. 
+                        Late cancellations may incur charges."/>
+        </VBox>
+    </HBox>
+
+    <!-- Loading Indicator -->
+    <StackPane fx:id="loadingOverlay" visible="false" styleClass="loading-overlay">
+        <VBox alignment="CENTER" spacing="10">
+            <ProgressIndicator/>
+            <Label fx:id="loadingLabel" text="Processing reservation..." styleClass="loading-text"/>
+        </VBox>
+    </StackPane>
+
+</VBox>

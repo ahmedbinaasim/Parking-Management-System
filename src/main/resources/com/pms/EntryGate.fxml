@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pms.controllers.EntryGateController"
+           stylesheets="@com/pms/css/entry-gate.css">
+           
+    <VBox fx:id="mainContainer" spacing="20" alignment="CENTER" maxWidth="600">
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER">
+            <Text text="Parking Entry" styleClass="title-text"/>
+        </HBox>
+
+        <!-- Card Scan Section -->
+        <VBox fx:id="cardScanContainer" spacing="15" styleClass="content-section">
+            <Text text="Scan Parking Card" styleClass="section-header"/>
+            
+            <VBox spacing="5">
+                <Label text="Card Number" styleClass="input-label"/>
+                <TextField fx:id="cardNumberField" 
+                          promptText="Enter card number or scan card"
+                          styleClass="input-field"/>
+                <Text text="Format: PMS-XXXXXXXXXXXXX-XXXX" 
+                      styleClass="help-text"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="progressIndicator" visible="false"/>
+                <Button text="Verify Card" 
+                        onAction="#handleCardScan"
+                        fx:id="confirmButton"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Spot Selection Section -->
+        <VBox fx:id="spotSelectionContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Vehicle Details" styleClass="section-header"/>
+
+            <!-- Reservation Details (if exists) -->
+            <VBox fx:id="reservationDetailsContainer" 
+                  styleClass="reservation-info" visible="false">
+                <Label fx:id="reservedSpotLabel" styleClass="info-text"/>
+                <Label fx:id="reservationTimeLabel" styleClass="info-text"/>
+                <Separator/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Vehicle Number" styleClass="input-label"/>
+                <TextField fx:id="vehicleNumberField" 
+                          promptText="Enter vehicle number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="License Plate" styleClass="input-label"/>
+                <TextField fx:id="plateNumberField" 
+                          promptText="Enter license plate number"
+                          styleClass="input-field"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Parking Spot" styleClass="input-label"/>
+                <ComboBox fx:id="spotNumberComboBox" 
+                         promptText="Select parking spot"
+                         styleClass="combo-box"/>
+            </VBox>
+
+            <HBox alignment="CENTER" spacing="10">
+                <ProgressIndicator fx:id="spotProgressIndicator" visible="false"/>
+                <Button text="Confirm Entry" 
+                        onAction="#handleEntryConfirmation"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Receipt Section -->
+        <VBox fx:id="receiptContainer" spacing="15" 
+              styleClass="content-section" visible="false">
+            <Text text="Entry Receipt" styleClass="section-header"/>
+
+            <VBox styleClass="receipt-content" spacing="10">
+                <Label fx:id="receiptNumberLabel" styleClass="receipt-text"/>
+                <Label fx:id="entryTimeLabel" styleClass="receipt-text"/>
+                <Label fx:id="spotNumberLabel" styleClass="receipt-text"/>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Button fx:id="printReceiptButton" 
+                        text="Print Receipt" 
+                        onAction="#handlePrintReceipt"
+                        styleClass="print-button"/>
+                <Button text="Back to Main Menu" 
+                        onAction="#goToMainMenu"
+                        styleClass="secondary-button"/>
+            </VBox>
+        </VBox>
+    </VBox>
+</StackPane>
